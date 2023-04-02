@@ -16,6 +16,8 @@
         "./src/*"
       ]
     },
-    "types": []
+    "types": [
+      "ant-design-vue/lib/index.d.ts"
+    ]
   }
 }
