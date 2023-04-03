@@ -5,7 +5,8 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
 import { createStyleImportPlugin, AndDesignVueResolve } from 'vite-plugin-style-import'
-
+import proxyOptions from './config/proxy'
+const isUppercase = (str: string) => str.charCodeAt(0) >= 65 && str.charCodeAt(0) <= 90
 // https://vitejs.dev/config/
 export default defineConfig({
   css: {
@@ -16,8 +17,18 @@ export default defineConfig({
     }
   },
   plugins: [
-    vue(),
-    vueJsx(),
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: () => false
+
+          // ...
+        }
+      }
+    }),
+    vueJsx({
+      isCustomElement: () => false
+    }),
 
     createStyleImportPlugin({
       resolves: [AndDesignVueResolve()]
@@ -29,6 +40,7 @@ export default defineConfig({
     }
   },
   server: {
-    port: 3000
+    port: 3000,
+    proxy: proxyOptions.dev
   }
 })

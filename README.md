@@ -66,3 +66,21 @@ pnpm test:e2e
 ```sh
 pnpm lint
 ```
+
+#### isCustomElement 自定义元素
+[自定义元素](https://cn.vuejs.org/guide/extras/web-components.html)
+在`vite.config.ts`中： 直接禁用了，后期再仔细看下这个怎么玩
+```
+vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag) => false
+
+          // ...
+        }
+      }
+    }),
+    vueJsx({
+      isCustomElement: (tag) => false
+    }),
+```
